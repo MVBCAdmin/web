@@ -1,0 +1,62 @@
+// COMPONENT [ CAROUSEL ] ########################################################################################
+
+@import "../../../scss/.base/_module-index";
+
+// A. GLOBAL STYLES +++++++++++++++++++++++++++++++++++++
+
+.oHeroCarouselBanner {
+}
+
+.oCarouselItem {
+  height: 100vh;
+  position: relative;
+  .aImage {
+    @include position(absolute, 0);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .mImageText {
+    position: absolute;
+    color: #ffffff;
+    text-shadow: 0 0 10px #000000;
+    line-height: normal;
+    margin: 0;
+  }
+}
+
+.slick-dots {
+  position: absolute;
+}
+
+// A. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// B. GRACEFUL DEGRADATION ++++++++++++++++++++++++++++++
+
+@media ($md-dn) {
+}
+
+// B. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// C. MIN-WIDTH: 768px ++++++++++++++++++++++++++++++++++
+
+@media ($md-up) {
+}
+
+// C. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// D. MIN-WIDTH: 992px ++++++++++++++++++++++++++++++++++
+
+@media ($lg-up) {
+}
+
+// D. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// E. MIN-WIDTH: 1200px +++++++++++++++++++++++++++++++++
+
+@media ($xl-up) {
+}
+
+// E. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// END OF FILE ########################################################################################################

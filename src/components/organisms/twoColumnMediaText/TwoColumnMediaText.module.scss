@@ -1,0 +1,170 @@
+// COMPONENT [ TEXT IMAGE BLOCK ] #####################################################################################
+
+@import "../../../scss/.base/_module-index";
+
+.oTextImageBlock {
+  // A. GLOBAL STYLES +++++++++++++++++++++++++++++++++++++
+
+  padding: 0;
+  position: relative;
+  .oContentCol {
+    .aTitle {
+      margin: 50px 0 20px;
+    }
+  }
+  &.noHeight {
+    min-height: auto;
+    .oColText {
+      align-self: normal;
+    }
+    .left {
+      .oColText {
+        align-self: flex-end;
+        padding-bottom: 30px;
+      }
+    }
+    .right {
+      .oColImage {
+        align-self: center;
+      }
+    }
+  }
+  &.fullHeight {
+    .oContentCol {
+    }
+    .oColImage {
+      .mImage {
+        aspect-ratio: 1/1;
+        background-size: cover;
+        background-position: center;
+      }
+    }
+  }
+
+  .oColImage {
+    .mVideo {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+
+      .aVideo {
+        @include position(absolute, 0);
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+  }
+
+  .oColText {
+    .mCopy {
+      padding: 30px 0;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        margin: 0 0 15px 0;
+      }
+      p {
+        @include scaledFont(14, 16, 16, 16, 18, 18);
+        margin-bottom: 10px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  // A. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+  // B. GRACEFUL DEGRADATION ++++++++++++++++++++++++++++++
+
+  @media ($md-dn) {
+  }
+
+  // B. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+  // C. MIN-WIDTH: 768px ++++++++++++++++++++++++++++++++++
+
+  @media ($md-up) {
+    padding: 0;
+    .oContentCol {
+      .aTitle {
+        margin: 50px 0 20px;
+      }
+    }
+    &.noHeight {
+      min-height: auto;
+      .oColText {
+        align-self: normal;
+      }
+      .left {
+        .oColText {
+          align-self: flex-end;
+          padding-bottom: 30px;
+        }
+      }
+      .right {
+        .oColImage {
+          align-self: center;
+        }
+      }
+    }
+    &.fullHeight {
+      min-height: 100vh;
+      .oContentCol {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .oColImage {
+        .aTitle {
+          flex: 1 1;
+        }
+        .mImage {
+          flex: 20 20;
+          background-position: center;
+          background-size: cover;
+        }
+      }
+    }
+
+    .oRow {
+      &.left {
+        .oColImage {
+          order: 1;
+        }
+        .oColText {
+          order: 2;
+          .mCopy {
+            padding: 0 0 0 50px;
+          }
+        }
+      }
+    }
+    .oColText {
+      .mCopy {
+        padding: 0 50px 0 0;
+      }
+    }
+  }
+
+  // C. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+  // D. MIN-WIDTH: 992px ++++++++++++++++++++++++++++++++++
+
+  @media ($md-up) {
+  }
+
+  // D. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+  // E. MIN-WIDTH: 1200px +++++++++++++++++++++++++++++++++
+
+  @media ($lg-up) {
+  }
+
+  // E. END +++++++++++++++++++++++++++++++++++++++++++++++
+}
+
+// END OF FILE ########################################################################################################

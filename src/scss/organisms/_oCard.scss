@@ -1,0 +1,153 @@
+// COMPONENT [ CARD ] #################################################################################################
+@import "../.base/_module-index";
+
+.oCard {
+  // A. GLOBAL STYLES +++++++++++++++++++++++++++++++++++++
+
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1/1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: border-box;
+
+  // A.1.1.1. HOVER CARD ----------------------------------
+
+  &.hoverCard {
+    transition: 0.3s ease;
+    position: relative;
+
+    .aImage {
+      @include position(absolute, 0);
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      transition: 0.6s ease;
+    }
+
+    .mBody {
+      @include position(absolute, 0);
+      padding: $base;
+      background: rgba(0, 0, 0, 0.4);
+      transition: 0.3s ease;
+      transform: translateY(80%);
+
+      .aCardTitle {
+        position: absolute;
+        top: $base;
+        left: $base;
+        color: white;
+      }
+      .mCardCopy {
+        position: absolute;
+        top: $base-lg;
+        left: 0;
+        opacity: 0;
+        transition: 0.6s ease;
+        p {
+          position: absolute;
+          margin: 0;
+          margin-bottom: $base-sm;
+          padding: 0;
+          @include scaledFont(12, 16, 16, 12, 16, 16);
+          color: $white;
+          text-shadow: 0 0 5px $black;
+          line-height: 14px;
+          height: 18px;
+          // TRUNCATE TEXT
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          transition: 0.5s ease;
+          left: 0;
+          opacity: 0;
+          &.truncated {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: 0.5s ease;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      transition: 0.3s ease;
+      .aImage {
+        transform: scale(1.05);
+        transition: 0.3s ease;
+      }
+      .mBody {
+        top: 0;
+        background: rgba(0, 0, 0, 0.6);
+        transition: 0.3s ease;
+        transform: translateY(0%);
+        .aCardTitle {
+          margin: 0;
+          transition: 0.8s;
+          top: 25%;
+        }
+        .mCardCopy {
+          top: 40%;
+          position: relative;
+          opacity: 1;
+          transition: 0.6s ease;
+          p {
+            white-space: normal;
+            transition: 0.6s ease;
+            height: auto;
+            position: relative;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  // A. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+  // B. GRACEFUL DEGRADATION ++++++++++++++++++++++++++++++
+
+  @media ($lg-dn) {
+    &.hoverCard {
+      &:hover {
+        .mBody {
+          .aCardTitle {
+            top: 10%;
+          }
+          .mCardCopy {
+            top: 20%;
+          }
+        }
+      }
+    }
+  }
+
+  // B. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+  // C. MIN-WIDTH: 768px ++++++++++++++++++++++++++++++++++
+
+  @media ($md-up) {
+  }
+
+  // C. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+  // D. MIN-WIDTH: 992px ++++++++++++++++++++++++++++++++++
+
+  @media ($lg-up) {
+  }
+
+  // D. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+  // E. MIN-WIDTH: 1200px +++++++++++++++++++++++++++++++++
+
+  @media ($xl-up) {
+  }
+
+  // E. END +++++++++++++++++++++++++++++++++++++++++++++++
+}
+
+// END OF FILE ########################################################################################################

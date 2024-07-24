@@ -1,0 +1,99 @@
+// MOLECULE [ NAVIGATION ] ############################################################################################
+
+@import "../../../scss/.base/_module-index";
+
+// A. GLOBAL STYLES +++++++++++++++++++++++++++++++++++++
+
+.oTabbedView {
+  max-width: 1140px;
+  margin: 50px auto;
+}
+
+.oTabs {
+  padding: 0;
+  margin: 0 0 50px 0;
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  .mTab {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+    background: none;
+    transition: 0.3s;
+    span {
+      display: block;
+      padding: 8px 5px;
+      position: relative;
+      font-family: $limo;
+      font-size: 18px;
+      &:after {
+        position: absolute;
+        content: "";
+        background-color: black;
+        height: 2px;
+        width: 86%;
+        bottom: 0;
+        @include center-align();
+        transition: 0.3s;
+      }
+    }
+    &[aria-selected="true"] {
+      span {
+        &:after {
+          display: none;
+        }
+      }
+    }
+    &:hover {
+      span {
+        &:after {
+          width: 0;
+          font-weight: 600;
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+}
+.oTab {
+  h4 {
+    margin-bottom: 30px;
+  }
+  p,
+  ul {
+    margin-bottom: 15px;
+  }
+}
+
+// A. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// B. GRACEFUL DEGRADATION ++++++++++++++++++++++++++++++
+
+@media ($md-dn) {
+}
+
+// B. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// C. MIN-WIDTH: 768px ++++++++++++++++++++++++++++++++++
+
+@media ($md-up) {
+}
+
+// C. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// D. MIN-WIDTH: 992px ++++++++++++++++++++++++++++++++++
+
+@media ($md-up) {
+}
+
+// D. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// E. MIN-WIDTH: 1200px +++++++++++++++++++++++++++++++++
+
+@media ($lg-up) {
+}
+
+// E. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// END OF FILE ########################################################################################################

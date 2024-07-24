@@ -1,0 +1,124 @@
+// MOLECULE [ NAVIGATION ] ############################################################################################
+
+@import "../../../scss/.base/_module-index";
+
+// A. GLOBAL STYLES +++++++++++++++++++++++++++++++++++++
+
+.oFooter {
+  background-color: black;
+  padding: $base-lg 0;
+  h6 {
+    color: $greyf2;
+  }
+  p {
+    color: white;
+  }
+  a {
+    color: white;
+    &:hover {
+      color: $greyf2;
+    }
+  }
+
+  .mImage {
+    max-width: 250px;
+    margin: 0 auto 50px;
+  }
+
+  .mAddress {
+    margin-bottom: 30px;
+  }
+
+  .oNavigation {
+    &.footerMenu {
+      list-style-type: none;
+      margin: 0 0 $base-lg 0;
+      padding: 0;
+      .mMenuItem {
+        margin-bottom: 12px;
+        a {
+          text-decoration: none;
+          outline: none !important;
+          position: relative;
+          font-weight: 12px;
+          &:after {
+            position: absolute;
+            content: "";
+            background-color: white;
+            height: 2px;
+            width: 100%;
+            bottom: -2px;
+            @include center-align();
+            transition: 0.3s;
+          }
+          &:hover {
+            &:after {
+              width: 0;
+              transition: 0.3s;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .mCredits {
+    display: inline-block;
+    h6 {
+      @include scaledFont(14, 18, 18, 16, 24, 24);
+      font-weight: 300;
+      margin-bottom: $base-md;
+    }
+    font-size: 10px;
+  }
+  .aCopyright {
+    display: inline-block;
+    color: white;
+    font-size: 10px;
+  }
+}
+
+.aImageBG {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+// A. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// B. GRACEFUL DEGRADATION ++++++++++++++++++++++++++++++
+
+@media ($md-dn) {
+}
+
+// B. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// C. MIN-WIDTH: 768px ++++++++++++++++++++++++++++++++++
+
+@media ($md-up) {
+  .oFooter {
+    .mImage {
+      margin: 0;
+    }
+  }
+}
+
+// C. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// D. MIN-WIDTH: 992px ++++++++++++++++++++++++++++++++++
+
+@media ($md-up) {
+}
+
+// D. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// E. MIN-WIDTH: 1200px +++++++++++++++++++++++++++++++++
+
+@media ($lg-up) {
+}
+
+// E. END +++++++++++++++++++++++++++++++++++++++++++++++
+
+// END OF FILE ########################################################################################################
