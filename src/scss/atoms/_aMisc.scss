@@ -15,59 +15,14 @@ html {
   scroll-behavior: smooth;
 }
 
-.aTextLink {
-  text-decoration: none;
-  outline: none !important;
-  position: relative;
-  font-weight: 12px;
-  &:after {
-    position: absolute;
-    content: "";
-    background-color: white;
-    height: 2px;
-    width: 100%;
-    bottom: -2px;
-    @include center-align();
-    transition: 0.3s;
-  }
-  &:hover {
-    &:after {
-      width: 0;
-      transition: 0.3s;
-    }
-  }
-}
-
 // A.1. ICONS ---------------------------------------------
-
-.aIcon {
-  width: 30px;
-  height: 30px;
-  display: block;
-  margin: 5px auto;
-  &.close {
-    background: url("/images/icons/icon--close.svg") center center no-repeat;
-  }
-}
 
 // A.1. END -----------------------------------------------
 
 // A.2. SPECIFIC ICONS ------------------------------------
 
 // A.2.1. CLOSE -------------
-.close {
-  position: absolute;
-  top: -15px;
-  right: -15px;
-  border: 2px solid #ccc;
-  background-color: #f2f2f2;
-  border-radius: 50px;
-  z-index: 10000;
-  opacity: 1;
-  &:hover {
-    opacity: 1;
-  }
-}
+
 // A.2.1. END ---------------
 
 // END ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

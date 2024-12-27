@@ -2,22 +2,17 @@
 
 // A. FONT SOURCE +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500&display=swap");
 
 @font-face {
-  font-family: Limo;
-  src: url("../../fonts/champagne_limousines.ttf") format("truetype");
+  font-family: Garet;
+  src: url("../../fonts/roboto/Roboto-Regular.ttf") format("truetype");
 }
 
-@font-face {
-  font-family: Limo-Bold;
-  src: url("../../fonts/champagne_limousines_b.ttf") format("truetype");
-}
-
-$limo: "Limo", sans-serif;
-$limo-b: "Limo-Bold", sans-serif;
-$title: "Limo-Bold", sans-serif;
-$font: "Roboto", sans-serif;
+$roboto: "Roboto", sans-serif;
+$font: $roboto;
 
 // A.2. RESPONSIVE FONT VARIABLES -------------------------
 // font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));

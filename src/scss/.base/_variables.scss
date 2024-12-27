@@ -48,8 +48,6 @@ $hd-up: "min-width:1920px";
 
 // B.1. PADDING & MARGINS ---------------------------------
 
-$base-xxxl: 100px;
-$base-xxl: 75px;
 $base-xl: 60px;
 $base-lg: 45px;
 $base-md: 30px;
@@ -65,17 +63,16 @@ $base-xs: 4px;
 
 // C.2. SITE COLOR CONFIG ---------------------------------
 
-$default: white;
-$avo: green;
+$default: #92a5ab;
+$yellow: #ffc700;
+$orange: #ff5400;
+$orangeDark: #ea5207;
+$green: #629f41;
+$peach: #fcd0bb;
+$grey80: #80b4cb;
+$blue: #63a3cb;
 
 $black: #000000;
-$greyf2: #f2f2f2;
-$greycc: #cccccc;
-$grey80: #808080;
-$greylt: #b2bac7;
-$greyBlue: #808ba1;
-$greyb3: #b3b5b4;
-$greyce: #cececf;
 $white: #ffffff;
 
 // C.2. END -----------------------------------------------

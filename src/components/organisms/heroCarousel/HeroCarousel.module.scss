@@ -1,32 +1,31 @@
-// COMPONENT [ CAROUSEL ] ########################################################################################
+// COMPONENT [ HERO CAROUSEL ] ########################################################################################
 
 @import "../../../scss/.base/_module-index";
 
 // A. GLOBAL STYLES +++++++++++++++++++++++++++++++++++++
 
-.oHeroCarouselBanner {
-}
-
-.oCarouselItem {
-  height: 100vh;
+.introBlock {
   position: relative;
-  .aImage {
-    @include position(absolute, 0);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-  .mImageText {
-    position: absolute;
-    color: #ffffff;
-    text-shadow: 0 0 10px #000000;
-    line-height: normal;
-    margin: 0;
+  background-color: rgba(black, 0.2);
+  min-height: 100vh;
+  .mLogo {
+    @include middle-align();
+    width: 100%;
+    .aImage {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-width: 800px;
+      margin: 0 auto;
+    }
   }
 }
 
-.slick-dots {
-  position: absolute;
+.oBackgroundImage {
+  @include position(absolute, 0);
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
 }
 
 // A. END +++++++++++++++++++++++++++++++++++++++++++++++
@@ -47,14 +46,14 @@
 
 // D. MIN-WIDTH: 992px ++++++++++++++++++++++++++++++++++
 
-@media ($lg-up) {
+@media ($md-up) {
 }
 
 // D. END +++++++++++++++++++++++++++++++++++++++++++++++
 
 // E. MIN-WIDTH: 1200px +++++++++++++++++++++++++++++++++
 
-@media ($xl-up) {
+@media ($lg-up) {
 }
 
 // E. END +++++++++++++++++++++++++++++++++++++++++++++++
