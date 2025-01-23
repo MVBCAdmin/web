@@ -1,11 +1,12 @@
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import classes from "./News.module.scss";
+import classes from "./Page.module.scss";
+import HeroCarousel from "@/components/organisms/heroCarousel/PageHeroCarousel";
 
 const {
   C_DELIVERY_KEY,
   C_GRAPHQL_URL,
 } = require("../../helpers/contentful-config");
-const { NEWS_CONTENT, NEWS_SLUG } = require("../../helpers/data/CONTENT_NEWS");
+const { PAGE_CONTENT, PAGE_SLUG } = require("../../helpers/data/CONTENT_PAGES");
 
 /**
  * Initial page load to access users browser information
@@ -14,12 +15,14 @@ const { NEWS_CONTENT, NEWS_SLUG } = require("../../helpers/data/CONTENT_NEWS");
  * @constructor
  */
 
-export default function News({ news }) {
-  console.log("news", news);
-  const { title } = news;
-
+export default function Page({ page }) {
+  const { title, componentsCollection } = page;
+  const { 0: componentHeroBanner, 1: subcomponentBodyText } =
+    page.componentsCollection.items;
+  console.log("blatjies", componentHeroBanner);
   return (
     <div className={classes.oProductPage}>
+      <HeroCarousel contentModule={componentHeroBanner} />
       <div className={`container`}>
         <div className={`row`}>
           <div className={`${classes.oImage} col-12 col-md-6`}>{title}</div>
@@ -30,7 +33,7 @@ export default function News({ news }) {
 }
 
 export async function getStaticProps({ params }) {
-  const { news } = params;
+  const { page } = params;
 
   const result = await fetch(C_GRAPHQL_URL, {
     method: "POST",
@@ -39,9 +42,9 @@ export async function getStaticProps({ params }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      query: NEWS_CONTENT,
+      query: PAGE_CONTENT,
       variables: {
-        slug: news,
+        slug: page,
       },
     }),
   });
@@ -52,11 +55,11 @@ export async function getStaticProps({ params }) {
   }
 
   const { data } = await result.json();
-  const [newsData] = data.pageBlogCollection.items;
+  const [pageData] = data.pagePageCollection.items;
 
   return {
     props: {
-      news: newsData,
+      page: pageData,
     },
   };
 }
@@ -69,7 +72,7 @@ export async function getStaticPaths() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      query: NEWS_SLUG,
+      query: PAGE_SLUG,
     }),
   });
 
@@ -78,10 +81,10 @@ export async function getStaticPaths() {
   }
 
   const { data } = await result.json();
-  const newsSlug = data.pageBlogCollection.items;
-  const paths = newsSlug.map(({ slug }) => {
+  const pageSlug = data.pagePageCollection.items;
+  const paths = pageSlug.map(({ slug }) => {
     return {
-      params: { news: slug },
+      params: { page: slug },
     };
   });
 

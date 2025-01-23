@@ -1,3 +1,5 @@
+const { MAIN_MENU } = require("./CONTENT_GLOBAL");
+
 export const HOME_CONTENT = `
 query GetHome($slug: String!) {
   pageHomepageCollection(where: { slug: $slug }, limit: 1) {
@@ -39,4 +41,10 @@ query {
     }
   }
 }
+`;
+
+export const HOME_MENU = `
+  query {
+    ${MAIN_MENU}
+  }
 `;
