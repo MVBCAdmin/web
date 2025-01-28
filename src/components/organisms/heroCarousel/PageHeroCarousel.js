@@ -1,23 +1,27 @@
 import Image from "next/image";
 import classes from "./HeroCarousel.module.scss";
-import { LogoSVG } from "@/assets/html/svg--logoMvbc";
 
 export default function PageHeroCarousel(contentModule) {
-  const { imagesCollection } =
-    contentModule.contentModule?.fields || contentModule.contentModule;
-  const { images } = imagesCollection.items;
-  const randomImage = images[`${Math.floor(Math.random() * 10) + 1}`].fields;
+  const { imagesCollection } = contentModule.contentModule;
+  const randomImage =
+    imagesCollection.items[`${Math.floor(Math.random() * 10) + 1}`].url;
 
-  console.log("contentModule", contentModule);
   return (
-    <section className={classes.introBlock}>
-      <figure className={`${classes.mLogo}`}>
-        <LogoSVG />
-      </figure>
+    <section className={classes.oPageHeroCarousel}>
+      {/* <figure className={`${classes.mLogo}`}>
+        <Image
+          src={`https://${logo.fields.file.url}`}
+          alt={`text`}
+          width={logo.fields.file.details.image.width}
+          height={logo.fields.file.details.image.height}
+          className={`${classes.aImage}`}
+          quality={100}
+        />
+      </figure> */}
       <div
         className={classes.oBackgroundImage}
         style={{
-          backgroundImage: `url(https://${randomImage.file.url})`,
+          backgroundImage: `url(${randomImage})`,
         }}
       ></div>
     </section>

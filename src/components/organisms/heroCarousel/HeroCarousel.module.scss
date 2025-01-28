@@ -28,6 +28,11 @@
   z-index: -1;
 }
 
+.oPageHeroCarousel {
+  position: relative;
+  height: 50vh;
+}
+
 // A. END +++++++++++++++++++++++++++++++++++++++++++++++
 
 // B. GRACEFUL DEGRADATION ++++++++++++++++++++++++++++++
@@ -40,6 +45,9 @@
 // C. MIN-WIDTH: 768px ++++++++++++++++++++++++++++++++++
 
 @media ($md-up) {
+  .oPageHeroCarousel {
+    max-height: 300px;
+  }
 }
 
 // C. END +++++++++++++++++++++++++++++++++++++++++++++++

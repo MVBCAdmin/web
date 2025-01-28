@@ -5,7 +5,6 @@ export default function HeroCarousel(contentModule) {
   const { title, logo, images } = contentModule.contentModule.fields;
   const randomImage = images[`${Math.floor(Math.random() * 10) + 1}`].fields;
 
-  console.log("contentModule", contentModule);
   return (
     <section className={classes.introBlock}>
       <figure className={`${classes.mLogo}`}>

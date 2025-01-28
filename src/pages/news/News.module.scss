@@ -1,4 +1,4 @@
-// GLBAL [ PROJECTS ] #################################################################################################
+// GLBAL [ NEWS PAGE ] ################################################################################################
 
 // A. GLOBAL STYLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -10,107 +10,54 @@
 
 // A.1. PAGE BASE STYLES ----------------------------------
 
-.oProductPage {
-  position: relative;
-}
+.oNewsArea {
+  margin-top: 80px;
+  .oCard {
+    text-decoration: none;
+    .oProjectCard {
+      background-color: black;
+      .mImage {
+        aspect-ratio: 1/1;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.6;
+        transition: 0.3s;
+      }
+      .mBody {
+        transition: 0.3s;
+        @include middle-align();
+        width: 100%;
+        text-align: center;
+        bottom: auto;
+        background-color: rgba(black, 0);
+        padding: 20px;
+        .aTitle {
+          color: white;
+          text-shadow: 0 0 4px black;
+        }
+      }
+      &:hover {
+        transition: 0.8s ease-in;
+        .mImage {
+          transition: 0.3s;
+          opacity: 1;
+        }
+        .mBody {
+          transition: 0.8s;
+          transform: translateY(0) translateX(-50%);
+          top: auto;
+          bottom: 0;
+          left: 50%;
 
-.oImage {
-  background-color: white;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-.oCopy {
-  background-color: #f4f4f4;
-  .oWrapper {
-    display: flex;
-    flex-direction: column;
-    padding: 30px 10px;
-    .mCopy {
-      padding: 50px 0 20px;
-    }
-    .aPrice {
-      font-weight: 800;
-    }
-  }
-}
-
-.oBlockRow {
-  margin-top: 50px;
-}
-
-// A.1. END -----------------------------------------------
-// A.1. END -----------------------------------------------
-
-.oBrandCollection {
-  margin-bottom: 100px;
-}
-
-.aTitle {
-  margin: 50px auto 30px;
-  text-align: center;
-}
-
-.mImageSmall {
-  background-size: cover;
-  background-position: bottom center;
-  height: 100%;
-  width: 100%;
-}
-
-.oColRight {
-  .oCol {
-    height: 50%;
-    padding: 0;
-    &.oColVideo {
-      padding: 0;
-    }
-    .oRowScaled {
-      height: 100%;
-      .oColImageSmall,
-      .oColProductLink {
-        height: 100%;
+          background-color: rgba(black, 1);
+        }
       }
     }
   }
 }
 
-.oLinkItem {
-  display: inline;
-  text-decoration: none;
-}
-
-.ctaBlurb {
-  border: 1px solid black;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: white;
-  text-align: center;
-  b {
-    font-weight: 800;
-  }
-  &:hover {
-    box-shadow: 0 0 5px black;
-    cursor: pointer;
-  }
-}
-
-.oWhatsAppLink {
-  display: inline-block;
-  margin-top: 30px;
-  .mWhatsAppLink {
-    width: 200px;
-    height: 42px;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-color: #25d366;
-    border-radius: 9px;
-    &:hover {
-      box-shadow: 0 0 5px rgba(black, 0.6);
-    }
-  }
-}
+// A.1. END -----------------------------------------------
+// A.1. END -----------------------------------------------
 
 // A.1. END -----------------------------------------------
 
@@ -126,9 +73,6 @@
 // C. MIN-WIDTH: 768px ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 @media ($md-up) {
-  .aTitle {
-    text-align: left;
-  }
 }
 
 // C. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
