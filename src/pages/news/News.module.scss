@@ -44,12 +44,11 @@
         }
         .mBody {
           transition: 0.8s;
-          transform: translateY(0) translateX(-50%);
           top: auto;
           bottom: 0;
           left: 50%;
-
           background-color: rgba(black, 1);
+          transform: translateY(0) translateX(-50%);
         }
       }
     }
