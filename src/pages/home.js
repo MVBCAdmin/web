@@ -50,6 +50,8 @@ export default function Home({ Page, menu }) {
     <div className="anchor" id="top">
       <Menu contentModule={menu} />
       <HeroCarousel contentModule={HeroBanner} />
+
+      {/* dummy content */}
       <p
         style={{
           padding: "100px",

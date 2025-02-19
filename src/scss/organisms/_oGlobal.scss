@@ -33,6 +33,12 @@ footer {
   }
 }
 
+.oBodyCopy {
+  p {
+    margin-bottom: 1em;
+  }
+}
+
 .oFooterMenu {
   display: flex;
   &._dir-horizontal {

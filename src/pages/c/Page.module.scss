@@ -10,107 +10,12 @@
 
 // A.1. PAGE BASE STYLES ----------------------------------
 
-.oProductPage {
-  position: relative;
-}
-
-.oImage {
-  background-color: white;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-.oCopy {
-  background-color: #f4f4f4;
-  .oWrapper {
-    display: flex;
-    flex-direction: column;
-    padding: 30px 10px;
-    .mCopy {
-      padding: 50px 0 20px;
-    }
-    .aPrice {
-      font-weight: 800;
-    }
-  }
-}
-
-.oBlockRow {
+.oBody {
   margin-top: 50px;
 }
 
 // A.1. END -----------------------------------------------
 // A.1. END -----------------------------------------------
-
-.oBrandCollection {
-  margin-bottom: 100px;
-}
-
-.aTitle {
-  margin: 50px auto 30px;
-  text-align: center;
-}
-
-.mImageSmall {
-  background-size: cover;
-  background-position: bottom center;
-  height: 100%;
-  width: 100%;
-}
-
-.oColRight {
-  .oCol {
-    height: 50%;
-    padding: 0;
-    &.oColVideo {
-      padding: 0;
-    }
-    .oRowScaled {
-      height: 100%;
-      .oColImageSmall,
-      .oColProductLink {
-        height: 100%;
-      }
-    }
-  }
-}
-
-.oLinkItem {
-  display: inline;
-  text-decoration: none;
-}
-
-.ctaBlurb {
-  border: 1px solid black;
-  padding: 20px;
-  border-radius: 10px;
-  background-color: white;
-  text-align: center;
-  b {
-    font-weight: 800;
-  }
-  &:hover {
-    box-shadow: 0 0 5px black;
-    cursor: pointer;
-  }
-}
-
-.oWhatsAppLink {
-  display: inline-block;
-  margin-top: 30px;
-  .mWhatsAppLink {
-    width: 200px;
-    height: 42px;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-color: #25d366;
-    border-radius: 9px;
-    &:hover {
-      box-shadow: 0 0 5px rgba(black, 0.6);
-    }
-  }
-}
 
 // A.1. END -----------------------------------------------
 
@@ -126,9 +31,6 @@
 // C. MIN-WIDTH: 768px ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 @media ($md-up) {
-  .aTitle {
-    text-align: left;
-  }
 }
 
 // C. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

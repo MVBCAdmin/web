@@ -1,5 +1,5 @@
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import classes from "./Page.module.scss";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import HeroCarousel from "@/components/organisms/heroCarousel/PageHeroCarousel";
 
 const {
@@ -14,23 +14,6 @@ const { PAGE_CONTENT, PAGE_SLUG } = require("../../helpers/data/CONTENT_PAGES");
  * @returns {JSX.Element}
  * @constructor
  */
-
-export default function Page({ page }) {
-  const { title, componentsCollection } = page;
-  const { 0: componentHeroBanner, 1: subcomponentBodyText } =
-    page.componentsCollection.items;
-  console.log("blatjies", componentHeroBanner);
-  return (
-    <div className={classes.oProductPage}>
-      <HeroCarousel contentModule={componentHeroBanner} />
-      <div className={`container`}>
-        <div className={`row`}>
-          <div className={`${classes.oImage} col-12 col-md-6`}>{title}</div>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 export async function getStaticProps({ params }) {
   const { page } = params;
@@ -92,4 +75,22 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
+}
+
+export default function Page({ page }) {
+  const { 0: componentHeroBanner, 1: subcomponentBodyText } =
+    page.componentsCollection.items;
+  const bodyText = subcomponentBodyText.copy.json;
+  return (
+    <div className={classes.oProductPage}>
+      <HeroCarousel contentModule={componentHeroBanner} />
+      <div className={`container`}>
+        <div className={`row`}>
+          <div className={`${classes.oBody} oBodyCopy col-12`}>
+            {documentToReactComponents(bodyText)}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

@@ -31,6 +31,19 @@
 .oPageHeroCarousel {
   position: relative;
   height: 50vh;
+  .oContainer,
+  .oRow {
+    height: 100%;
+  }
+  .oCol {
+    position: relative;
+    .aPageTitle {
+      @include vertical-align(absolute);
+      left: 5hw;
+      color: white;
+      text-shadow: 0 0 10px black;
+    }
+  }
 }
 
 // A. END +++++++++++++++++++++++++++++++++++++++++++++++

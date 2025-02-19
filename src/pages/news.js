@@ -75,32 +75,27 @@ export default function News({ news, menu, hero }) {
       <PageHeroCarousel contentModule={hero} />
       <div className={`${classes.oNewsArea} container`}>
         <div className="row no-gutters">
-          {news.map(
-            (article, index) => (
-              console.log("NUUUZZZZ", article),
-              (
-                <Link
-                  href={`/news/${article.slug}`}
-                  key={index}
-                  className={`${classes.oCard} col-12 col-md-4 col-lg-3`}
-                >
-                  <article className={`${classes.oProjectCard}`}>
-                    <figure
-                      className={`${classes.mImage}`}
-                      style={{
-                        backgroundImage: `url(${article.image?.url})`,
-                      }}
-                    ></figure>
-                    <div className={`${classes.mBody}`}>
-                      <h3 className={`${classes.aTitle} fontH3`}>
-                        {article.title}
-                      </h3>
-                    </div>
-                  </article>
-                </Link>
-              )
-            )
-          )}
+          {news.map((article, index) => (
+            <Link
+              href={`/news/${article.slug}`}
+              key={index}
+              className={`${classes.oCard} col-12 col-md-4 col-lg-3`}
+            >
+              <article className={`${classes.oProjectCard}`}>
+                <figure
+                  className={`${classes.mImage}`}
+                  style={{
+                    backgroundImage: `url(${article.image?.url})`,
+                  }}
+                ></figure>
+                <div className={`${classes.mBody}`}>
+                  <h3 className={`${classes.aTitle} fontH3`}>
+                    {article.title}
+                  </h3>
+                </div>
+              </article>
+            </Link>
+          ))}
         </div>
       </div>
     </div>
