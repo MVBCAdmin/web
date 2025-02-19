@@ -2,14 +2,18 @@
 
 // A.1. POSITION EQUAL SIDES ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-@mixin position ($position, $padding) {
-
+@mixin position($position, $padding) {
   position: $position;
   top: $padding;
   right: $padding;
   bottom: $padding;
   left: $padding;
+}
 
+@mixin bg-position($size, $position-v, $position-h) {
+  background-size: $size;
+  background-position: $position-v $position-h;
+  background-repeat: no-repeat;
 }
 
 // A.1. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -18,55 +22,48 @@
 
 // B.1. Vertical Align --------------------------------------------------------------------------------------------
 
-@mixin vertical-align($position){
-
+@mixin vertical-align($position) {
   position: $position;
   top: 50%;
-  -ms-transform: translateY(-50%) ;
-  -webkit-transform: translateY(-50%) ;
-  transform: translateY(-50%) ;
-
+  -ms-transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 // B.1. END -------------------------------------------------------------------------------------------------------
 
 // B.1. Vertical Flex ---------------------------------------------------------------------------------------------
 
-@mixin vertical-flex($height){
-
+@mixin vertical-flex($height) {
   justify-content: center;
   flex-direction: column;
   height: $height;
-
 }
 
 // B.1. END -------------------------------------------------------------------------------------------------------
 
 // B.1. Center Align ----------------------------------------------------------------------------------------------
 
-@mixin center-align(){
-
+@mixin center-align() {
   position: absolute;
   left: 50%;
   -ms-transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-
 }
 
 // B.1. END -------------------------------------------------------------------------------------------------------
 
 // B.1. Center Align ----------------------------------------------------------------------------------------------
 
-@mixin middle-align(){
-
+@mixin middle-align() {
   position: absolute;
   top: 50%;
   left: 50%;
   -ms-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
-
+  transform-origin: center;
 }
 
 // B.1. END -------------------------------------------------------------------------------------------------------
@@ -75,18 +72,14 @@
 
 // C. ASPECT RATIO ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-
-@mixin aspect-ratio ($width, $aspect){
-
+@mixin aspect-ratio($width, $aspect) {
   position: relative;
   width: $width;
 
   &:before {
-
     content: "";
     display: block;
     padding-top: $aspect;
-
   }
 }
 
@@ -98,13 +91,11 @@
 
 // D.1.1. DOWN ARROW --------------------------------------
 
-@mixin arrow-down ($size, $color, $padding) {
-
+@mixin arrow-down($size, $color, $padding) {
   outline: 0;
 
   &:after {
-
-    content: '';
+    content: "";
     outline: 0;
     width: 0;
     height: 0;
@@ -113,7 +104,6 @@
     border-right: $size solid transparent;
     border-top: $size solid $color;
     @include center-align();
-
   }
 }
 
@@ -123,12 +113,16 @@
 
 // E.1. ANIMATED CLOSE BUTTON -----------------------------
 
-@mixin close-button ($size, $bar-thickness, $color, $hover-color) {
-
-  position: absolute; top: 5px; right: 5px; width: $size; height: $size; cursor: pointer;
+@mixin close-button($size, $bar-thickness, $color, $hover-color) {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: $size;
+  height: $size;
+  cursor: pointer;
 
   &:before {
-    content: '';
+    content: "";
     background: $color;
     width: 100%;
     height: $bar-thickness;
@@ -140,7 +134,7 @@
   }
 
   &:after {
-    content: '';
+    content: "";
     background: $color;
     width: 100%;
     height: $bar-thickness;
@@ -152,10 +146,17 @@
   }
 
   &:hover {
-    &:before    { transform: translate(-50%, -50%) rotate(-45deg); transition: 0.3s; background: $hover-color; }
-    &:after     { transform: translate(-50%, -50%) rotate(45deg); transition: 0.3s; background: $hover-color; }
+    &:before {
+      transform: translate(-50%, -50%) rotate(-45deg);
+      transition: 0.3s;
+      background: $hover-color;
+    }
+    &:after {
+      transform: translate(-50%, -50%) rotate(45deg);
+      transition: 0.3s;
+      background: $hover-color;
+    }
   }
-
 }
 
 // E.1. END -----------------------------------------------

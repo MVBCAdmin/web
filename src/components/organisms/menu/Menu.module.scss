@@ -4,18 +4,34 @@
 
 // A.0. IMPORTS -------------------------------------------
 
-@import "../../scss/.base/module-index";
+@import "../../../scss/.base/_module-index";
 
 // A.0. END: IMPORTS --------------------------------------
 
 // A.1. PAGE BASE STYLES ----------------------------------
 
-.oBody {
-  margin-top: 50px;
+.oNav {
+  background-color: white;
+  position: fixed;
+  top: 10px;
+  left: 15px;
+  right: 15px;
+  z-index: 100;
+  padding: 0 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(black, 0.6);
+  .oMenu {
+    display: flex;
+    gap: 15px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    .mItem {
+      padding: 10px 0;
+      display: block;
+    }
+  }
 }
-
-// A.1. END -----------------------------------------------
-// A.1. END -----------------------------------------------
 
 // A.1. END -----------------------------------------------
 
@@ -31,6 +47,9 @@
 // C. MIN-WIDTH: 768px ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 @media ($md-up) {
+  .aTitle {
+    text-align: left;
+  }
 }
 
 // C. END +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

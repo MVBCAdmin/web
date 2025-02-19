@@ -1,12 +1,11 @@
-import classes from "./Page.module.scss";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import HeroCarousel from "@/components/organisms/heroCarousel/PageHeroCarousel";
+import classes from "./News.module.scss";
 
 const {
   C_DELIVERY_KEY,
   C_GRAPHQL_URL,
 } = require("../../helpers/contentful-config");
-const { PAGE_CONTENT, PAGE_SLUG } = require("../../helpers/data/CONTENT_PAGES");
+const { NEWS_CONTENT, NEWS_SLUG } = require("../../helpers/data/CONTENT_NEWS");
 
 /**
  * Initial page load to access users browser information
@@ -15,8 +14,23 @@ const { PAGE_CONTENT, PAGE_SLUG } = require("../../helpers/data/CONTENT_PAGES");
  * @constructor
  */
 
+export default function News({ news }) {
+  console.log("news", news);
+  const { title } = news;
+
+  return (
+    <div className={classes.oProductPage}>
+      <div className={`container`}>
+        <div className={`row`}>
+          <div className={`${classes.oImage} col-12 col-md-6`}>{title}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export async function getStaticProps({ params }) {
-  const { page } = params;
+  const { news } = params;
 
   const result = await fetch(C_GRAPHQL_URL, {
     method: "POST",
@@ -25,9 +39,9 @@ export async function getStaticProps({ params }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      query: PAGE_CONTENT,
+      query: NEWS_CONTENT,
       variables: {
-        slug: page,
+        slug: news,
       },
     }),
   });
@@ -38,11 +52,11 @@ export async function getStaticProps({ params }) {
   }
 
   const { data } = await result.json();
-  const [pageData] = data.pagePageCollection.items;
+  const [newsData] = data.pageBlogCollection.items;
 
   return {
     props: {
-      page: pageData,
+      news: newsData,
     },
   };
 }
@@ -55,7 +69,7 @@ export async function getStaticPaths() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      query: PAGE_SLUG,
+      query: NEWS_SLUG,
     }),
   });
 
@@ -64,10 +78,10 @@ export async function getStaticPaths() {
   }
 
   const { data } = await result.json();
-  const pageSlug = data.pagePageCollection.items;
-  const paths = pageSlug.map(({ slug }) => {
+  const newsSlug = data.pageBlogCollection.items;
+  const paths = newsSlug.map(({ slug }) => {
     return {
-      params: { page: slug },
+      params: { news: slug },
     };
   });
 
@@ -75,22 +89,4 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
-}
-
-export default function Page({ page }) {
-  const { 0: componentHeroBanner, 1: subcomponentBodyText } =
-    page.componentsCollection.items;
-  const bodyText = subcomponentBodyText.copy.json;
-  return (
-    <div className={classes.oProductPage}>
-      <HeroCarousel contentModule={componentHeroBanner} />
-      <div className={`container`}>
-        <div className={`row`}>
-          <div className={`${classes.oBody} oBodyCopy col-12`}>
-            {documentToReactComponents(bodyText)}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 }

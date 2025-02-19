@@ -15,7 +15,7 @@
 }
 
 footer {
-  padding: 50px 0;
+  padding: 50px 0 50px;
   .footer-col-1 {
     order: 1;
   }
@@ -30,6 +30,12 @@ footer {
     .aWhatsappText {
       margin-bottom: 30px;
     }
+  }
+}
+
+.oBodyCopy {
+  p {
+    margin-bottom: 1em;
   }
 }
 

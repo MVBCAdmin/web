@@ -1,4 +1,4 @@
-// GLBAL [ PROJECTS ] #################################################################################################
+// GLBAL [ NEWS PAGE ] ################################################################################################
 
 // A. GLOBAL STYLES +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -10,8 +10,49 @@
 
 // A.1. PAGE BASE STYLES ----------------------------------
 
-.oBody {
-  margin-top: 50px;
+.oNewsArea {
+  margin-top: 80px;
+  .oCard {
+    text-decoration: none;
+    .oProjectCard {
+      background-color: black;
+      .mImage {
+        aspect-ratio: 1/1;
+        background-size: cover;
+        background-position: center;
+        opacity: 0.6;
+        transition: 0.3s;
+      }
+      .mBody {
+        transition: 0.3s;
+        @include middle-align();
+        width: 100%;
+        text-align: center;
+        bottom: auto;
+        background-color: rgba(black, 0);
+        padding: 20px;
+        .aTitle {
+          color: white;
+          text-shadow: 0 0 4px black;
+        }
+      }
+      &:hover {
+        transition: 0.8s ease-in;
+        .mImage {
+          transition: 0.3s;
+          opacity: 1;
+        }
+        .mBody {
+          transition: 0.8s;
+          top: auto;
+          bottom: 0;
+          left: 50%;
+          background-color: rgba(black, 1);
+          transform: translateY(0) translateX(-50%);
+        }
+      }
+    }
+  }
 }
 
 // A.1. END -----------------------------------------------
