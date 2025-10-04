@@ -25,12 +25,10 @@ async function fetchManualInstagramPosts(appAccessToken) {
     const instagramPostUrls = process.env.INSTAGRAM_POST_URLS;
 
     if (!instagramPostUrls) {
-      console.log("No manual Instagram URLs configured");
       return [];
     }
 
     const postUrls = instagramPostUrls.split(",").map((url) => url.trim());
-    console.log("Using manual Instagram post URLs:", postUrls);
 
     const oEmbedUrl = `https://graph.facebook.com/v18.0/instagram_oembed`;
     const posts = [];
@@ -52,23 +50,14 @@ async function fetchManualInstagramPosts(appAccessToken) {
             thumbnail_url: data.thumbnail_url,
             url: postUrl,
           });
-          console.log(`Successfully fetched oEmbed for: ${postUrl}`);
-        } else {
-          const errorData = await response.json().catch(() => ({}));
-          console.log(
-            `Failed to fetch oEmbed for ${postUrl}: ${response.status}`,
-            errorData
-          );
-          // Don't add placeholder - only show real Instagram embeds
         }
       } catch (error) {
-        console.log(`Error fetching oEmbed for ${postUrl}:`, error.message);
+        // Silently continue to next post
       }
     }
 
     return posts;
   } catch (error) {
-    console.log("Manual Instagram fetch error:", error.message);
     return [];
   }
 }
@@ -80,13 +69,7 @@ async function fetchInstagramPosts() {
     const facebookAppSecret = process.env.FACEBOOK_APP_SECRET;
     const instagramUsername = process.env.INSTAGRAM_USERNAME;
 
-    console.log("Instagram fetch attempt started");
-    console.log("App ID:", facebookAppId ? "Set" : "Missing");
-    console.log("App Secret:", facebookAppSecret ? "Set" : "Missing");
-    console.log("Username:", instagramUsername);
-
     if (!facebookAppId || !facebookAppSecret || !instagramUsername) {
-      console.log("Facebook/Instagram credentials not configured");
       return [];
     }
 
@@ -98,33 +81,18 @@ async function fetchInstagramPosts() {
     const cleanUsername = instagramUsername.replace("@", "");
     const instagramAccountUrl = `https://graph.facebook.com/v18.0/${cleanUsername}?fields=instagram_business_account&access_token=${appAccessToken}`;
 
-    console.log("Fetching Instagram account for username:", cleanUsername);
-    console.log("Account URL:", instagramAccountUrl);
-
     const accountResponse = await fetch(instagramAccountUrl);
 
     if (!accountResponse.ok) {
-      const errorData = await accountResponse.json().catch(() => ({}));
-      console.log(
-        `Failed to fetch Instagram account: ${accountResponse.status}`,
-        errorData
-      );
-
       // Fallback to manual URLs for testing
-      console.log("Falling back to manual Instagram URLs...");
       return await fetchManualInstagramPosts(appAccessToken);
     }
 
     const accountData = await accountResponse.json();
-    console.log("Instagram account data:", accountData);
     const instagramBusinessAccountId =
       accountData.instagram_business_account?.id;
 
     if (!instagramBusinessAccountId) {
-      console.log(
-        "Instagram Business Account not found. Account data:",
-        accountData
-      );
       return [];
     }
 
@@ -134,7 +102,6 @@ async function fetchInstagramPosts() {
     const mediaResponse = await fetch(mediaUrl);
 
     if (!mediaResponse.ok) {
-      console.log(`Failed to fetch Instagram media: ${mediaResponse.status}`);
       return [];
     }
 
@@ -164,29 +131,19 @@ async function fetchInstagramPosts() {
             media_type: mediaItem.media_type,
             timestamp: mediaItem.timestamp,
           });
-        } else {
-          console.log(
-            `Failed to fetch oEmbed for ${mediaItem.permalink}: ${response.status}`
-          );
         }
       } catch (error) {
-        console.log(
-          `Error fetching oEmbed for ${mediaItem.permalink}:`,
-          error.message
-        );
+        // Silently continue to next post
       }
     }
 
     return posts;
   } catch (error) {
-    console.log("Instagram fetch error:", error.message);
     return [];
   }
 }
 
 export async function getServerSideProps() {
-  console.log("=== getServerSideProps started ===");
-  console.error("=== ERROR LOG TEST ===");
 
   const client = createClient({
     space: C_SPACE_ID,
@@ -234,9 +191,7 @@ export async function getServerSideProps() {
   });
 
   // Fetch Instagram posts
-  console.log("About to fetch Instagram posts");
   const instagramPosts = await fetchInstagramPosts();
-  console.log("Instagram posts fetched:", instagramPosts.length, "posts");
 
   if (!newsResult.ok || !menuResult.ok) {
     return {};
@@ -271,9 +226,6 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ Page, menu, news, footer, instagramPosts }) {
-  console.log("=== Home component rendered ===");
-  console.log("Instagram posts received:", instagramPosts?.length || 0);
-
   const { 0: HeroBanner } = Page[0].fields.components;
   return (
     <div className="anchor" id="top">
