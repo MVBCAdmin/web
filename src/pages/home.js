@@ -19,31 +19,131 @@ const {
   NEWS_HERO,
 } = require("../helpers/data/CONTENT_NEWS");
 
-// Function to fetch Instagram posts
-async function fetchInstagramPosts() {
+// Fallback function to fetch Instagram posts using manual URLs
+async function fetchManualInstagramPosts(appAccessToken) {
   try {
-    // You'll need to replace this with your actual Instagram API endpoint
-    // This is a placeholder - you'll need to set up Instagram Basic Display API
-    const response = await fetch("YOUR_INSTAGRAM_API_ENDPOINT", {
-      headers: {
-        Authorization: `Bearer YOUR_ACCESS_TOKEN`,
-      },
-    });
+    const instagramPostUrls = process.env.INSTAGRAM_POST_URLS;
 
-    if (!response.ok) {
-      console.log("Instagram API not available");
+    if (!instagramPostUrls) {
       return [];
     }
 
-    const data = await response.json();
-    return data.data || [];
+    const postUrls = instagramPostUrls.split(",").map((url) => url.trim());
+
+    const oEmbedUrl = `https://graph.facebook.com/v18.0/instagram_oembed`;
+    const posts = [];
+
+    for (const postUrl of postUrls) {
+      try {
+        const response = await fetch(
+          `${oEmbedUrl}?url=${encodeURIComponent(
+            postUrl
+          )}&access_token=${appAccessToken}`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          posts.push({
+            html: data.html,
+            title: data.title,
+            author_name: data.author_name,
+            thumbnail_url: data.thumbnail_url,
+            url: postUrl,
+          });
+        }
+      } catch (error) {
+        // Silently continue to next post
+      }
+    }
+
+    return posts;
   } catch (error) {
-    console.log("Instagram fetch error:", error.message);
     return [];
   }
 }
 
-export async function getStaticProps() {
+// Function to fetch latest Instagram posts dynamically using App ID/Secret
+async function fetchInstagramPosts() {
+  try {
+    const facebookAppId = process.env.FACEBOOK_APP_ID;
+    const facebookAppSecret = process.env.FACEBOOK_APP_SECRET;
+    const instagramUsername = process.env.INSTAGRAM_USERNAME;
+
+    if (!facebookAppId || !facebookAppSecret || !instagramUsername) {
+      return [];
+    }
+
+    // Generate app access token using App ID and App Secret
+    const appAccessToken = `${facebookAppId}|${facebookAppSecret}`;
+
+    // Step 1: Get Instagram Business Account ID from username
+    // Remove @ symbol if present
+    const cleanUsername = instagramUsername.replace("@", "");
+    const instagramAccountUrl = `https://graph.facebook.com/v18.0/${cleanUsername}?fields=instagram_business_account&access_token=${appAccessToken}`;
+
+    const accountResponse = await fetch(instagramAccountUrl);
+
+    if (!accountResponse.ok) {
+      // Fallback to manual URLs for testing
+      return await fetchManualInstagramPosts(appAccessToken);
+    }
+
+    const accountData = await accountResponse.json();
+    const instagramBusinessAccountId =
+      accountData.instagram_business_account?.id;
+
+    if (!instagramBusinessAccountId) {
+      return [];
+    }
+
+    // Step 2: Get recent media from Instagram Business Account
+    const mediaUrl = `https://graph.facebook.com/v18.0/${instagramBusinessAccountId}/media?fields=id,media_type,media_url,permalink,timestamp&limit=4&access_token=${appAccessToken}`;
+
+    const mediaResponse = await fetch(mediaUrl);
+
+    if (!mediaResponse.ok) {
+      return [];
+    }
+
+    const mediaData = await mediaResponse.json();
+    const mediaItems = mediaData.data || [];
+
+    // Step 3: Get oEmbed data for each post
+    const oEmbedUrl = `https://graph.facebook.com/v18.0/instagram_oembed`;
+    const posts = [];
+
+    for (const mediaItem of mediaItems) {
+      try {
+        const response = await fetch(
+          `${oEmbedUrl}?url=${encodeURIComponent(
+            mediaItem.permalink
+          )}&access_token=${appAccessToken}`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          posts.push({
+            html: data.html,
+            title: data.title,
+            author_name: data.author_name,
+            thumbnail_url: data.thumbnail_url,
+            url: mediaItem.permalink,
+            media_type: mediaItem.media_type,
+            timestamp: mediaItem.timestamp,
+          });
+        }
+      } catch (error) {
+        // Silently continue to next post
+      }
+    }
+
+    return posts;
+  } catch (error) {
+    return [];
+  }
+}
+
+export async function getServerSideProps() {
   const client = createClient({
     space: C_SPACE_ID,
     accessToken: C_DELIVERY_KEY,
@@ -121,7 +221,6 @@ export async function getStaticProps() {
       footer,
       instagramPosts,
     },
-    revalidate: 1,
   };
 }
 
