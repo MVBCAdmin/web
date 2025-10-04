@@ -10,6 +10,17 @@
 
 // A.1. PAGE BASE STYLES ----------------------------------
 
+.oInstagramFeed {
+  margin-top: 80px;
+  margin-bottom: 40px;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+}
+
 .oNewsArea {
   margin-top: 80px;
   .oCard {
@@ -52,6 +63,14 @@
         }
       }
     }
+  }
+}
+
+.oImage {
+  margin: 50px 0;
+  .aImage {
+    height: auto;
+    max-width: 100%;
   }
 }
 

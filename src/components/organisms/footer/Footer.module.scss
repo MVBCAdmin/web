@@ -1,0 +1,122 @@
+.oFooter {
+  background-color: #333;
+  color: #fff;
+  padding: 3rem 0 2rem;
+  margin-top: 50px;
+
+  .mLogo {
+    margin-bottom: 2rem;
+
+    img {
+      max-width: 200px;
+      height: auto;
+    }
+  }
+
+  .mColumnContent {
+    margin-bottom: 2rem;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    ul,
+    ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .oSocialMedia {
+    border-top: 1px solid #555;
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+
+  .mSocialMenu {
+    text-align: center;
+  }
+
+  .aSocialList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .mSocialItem {
+    a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: #555;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #666;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .oFooter {
+    padding: 2rem 0 1rem;
+
+    .mLogo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .mColumnContent {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .aSocialList {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .mSocialItem {
+      width: 100%;
+      max-width: 200px;
+
+      a {
+        display: block;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -28,3 +28,41 @@ export const PAGE_HERO = `
     }
   }
 `;
+
+export const FOOTER_CONTENT = `
+  query {
+    componentFooter(id: "J0CAOsQiy1HfXabwSyxYA") {
+      title
+      logo {
+        title
+        url
+        width
+        height
+      }
+      columnOneCopy {
+        json
+      }
+      columnTwoCopy {
+        json
+      }
+      socialMediaMenu {
+        menuItemsCollection {
+          items {
+            ... on SubcomponentLink {
+              label
+              url
+              isExternal
+              customClass
+              image {
+                title
+                url
+                width
+                height
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

@@ -31,27 +31,41 @@ export default function Menu(contentModule) {
   }, []);
 
   const { menuItemsCollection } = contentModule.contentModule;
+
+  // Transform URLs to fix incorrect paths
+  const transformUrl = (url) => {
+    // Check if URL contains /c/news or is just "news"
+    if (url.includes("/c/news") || url === "news") {
+      return "/news";
+    }
+
+    return url;
+  };
+
   return (
     <nav className={classes.oNav} ref={navbarRef}>
       <ul className={classes.oMenu}>
-        {menuItemsCollection?.items.map((item, index) => (
-          <li key={index} className={classes.mItem}>
-            {item.isExternal ? (
-              <a
-                href={item.url}
-                className={item.customClass}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {item.label}
-              </a>
-            ) : (
-              <Link href={item.url} className={item.customClass}>
-                {item.label}
-              </Link>
-            )}
-          </li>
-        ))}
+        {menuItemsCollection?.items.map((item, index) => {
+          const transformedUrl = transformUrl(item.url);
+          return (
+            <li key={index} className={classes.mItem}>
+              {item.isExternal ? (
+                <a
+                  href={transformedUrl}
+                  className={item.customClass}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link href={transformedUrl} className={item.customClass}>
+                  {item.label}
+                </Link>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

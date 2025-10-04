@@ -1,4 +1,4 @@
-// const { MAIN_MENU } = require("./CONTENT_GLOBAL");
+const { MAIN_MENU } = require("./CONTENT_GLOBAL");
 
 export const PAGE_CONTENT = `
   query GetPage($slug: String!) {
@@ -37,5 +37,11 @@ export const PAGE_SLUG = `
         slug
       }
     }
+  }
+`;
+
+export const PAGE_MENU = `
+  query {
+    ${MAIN_MENU}
   }
 `;

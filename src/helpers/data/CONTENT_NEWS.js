@@ -9,6 +9,14 @@ export const NEWS_CONTENT = `
         copy {
           json
         }
+        ... on PageBlog {
+          image {
+            title
+            url
+            width
+            height
+          }
+        }
       }
     }
   }

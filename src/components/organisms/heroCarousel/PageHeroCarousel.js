@@ -3,8 +3,8 @@ import classes from "./HeroCarousel.module.scss";
 
 export default function PageHeroCarousel(contentModule) {
   const { title, imagesCollection } = contentModule.contentModule;
-  const randomImage =
-    imagesCollection.items[`${Math.floor(Math.random() * 10) + 1}`].url;
+  // Use first image instead of random to avoid hydration mismatch
+  const selectedImage = imagesCollection.items[0]?.url;
 
   return (
     <section className={classes.oPageHeroCarousel}>
@@ -19,7 +19,7 @@ export default function PageHeroCarousel(contentModule) {
       <div
         className={classes.oBackgroundImage}
         style={{
-          backgroundImage: `url(${randomImage})`,
+          backgroundImage: `url(${selectedImage})`,
         }}
       ></div>
     </section>
