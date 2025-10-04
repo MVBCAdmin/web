@@ -144,7 +144,6 @@ async function fetchInstagramPosts() {
 }
 
 export async function getServerSideProps() {
-
   const client = createClient({
     space: C_SPACE_ID,
     accessToken: C_DELIVERY_KEY,
