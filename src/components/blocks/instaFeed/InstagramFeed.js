@@ -1,7 +1,41 @@
 // components/InstagramFeed.js
-import React from "react";
+import React, { useEffect } from "react";
 
 const InstagramFeed = ({ posts }) => {
+  // Don't render anything if no posts or posts is undefined
+  if (!posts || posts.length === 0) {
+    return null;
+  }
+
+  useEffect(() => {
+    // Load Instagram embed script if not already loaded
+    if (typeof window !== "undefined" && !window.instgrm) {
+      const script = document.createElement("script");
+      script.src = "//www.instagram.com/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+
+      return () => {
+        // Cleanup script on unmount
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    // Process Instagram embeds after posts change
+    if (
+      typeof window !== "undefined" &&
+      window.instgrm &&
+      posts &&
+      posts.length > 0
+    ) {
+      window.instgrm.Embeds.process();
+    }
+  }, [posts]);
+
   return (
     <div className="instagram-feed">
       {posts.map((post, index) => (
