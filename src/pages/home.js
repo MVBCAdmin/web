@@ -3,7 +3,7 @@ import classes from "./news/News.module.scss";
 import HeroCarousel from "@/components/organisms/heroCarousel/HeroCarousel";
 import Menu from "@/components/organisms/menu/Menu";
 import Footer from "@/components/organisms/footer/Footer";
-import InstagramFeed from "@/components/blocks/instaFeed/InstagramFeed";
+// import InstagramFeed from "@/components/blocks/instaFeed/InstagramFeed";
 import Link from "next/link";
 const { HOME_MENU } = require("../helpers/data/CONTENT_HOME");
 const { FOOTER_CONTENT } = require("../helpers/data/CONTENT_GLOBAL");
@@ -19,6 +19,8 @@ const {
   NEWS_HERO,
 } = require("../helpers/data/CONTENT_NEWS");
 
+// Instagram functionality disabled
+/*
 // Fallback function to fetch Instagram posts using manual URLs
 async function fetchManualInstagramPosts(appAccessToken) {
   try {
@@ -192,6 +194,7 @@ async function fetchInstagramPosts() {
     return [];
   }
 }
+*/
 
 export async function getServerSideProps() {
   const client = createClient({
@@ -239,8 +242,9 @@ export async function getServerSideProps() {
     }),
   });
 
-  // Fetch Instagram posts
-  const instagramPosts = await fetchInstagramPosts();
+  // Instagram functionality disabled
+  // const instagramPosts = await fetchInstagramPosts();
+  const instagramPosts = [];
 
   if (!newsResult.ok || !menuResult.ok) {
     return {};
@@ -281,8 +285,8 @@ export default function Home({ Page, menu, news, footer, instagramPosts }) {
       <Menu contentModule={menu} />
       <HeroCarousel contentModule={HeroBanner} />
 
-      {/* Instagram Feed - Only show if we have posts */}
-      {instagramPosts && instagramPosts.length > 0 && (
+      {/* Instagram Feed - DISABLED */}
+      {/* {instagramPosts && instagramPosts.length > 0 && (
         <div className={`${classes.oInstagramFeed} container`}>
           <div className="row">
             <div className="col-12">
@@ -291,7 +295,7 @@ export default function Home({ Page, menu, news, footer, instagramPosts }) {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       {/* Featured Articles */}
       <div className={`${classes.oNewsArea} container`}>
