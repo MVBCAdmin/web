@@ -94,12 +94,11 @@ async function fetchInstagramPosts() {
     const instagramUsername = process.env.INSTAGRAM_USERNAME;
 
     if (!facebookAppId || !facebookAppSecret || !instagramUsername) {
-      console.log("Missing Instagram credentials:", {
-        appId: !!facebookAppId,
-        appSecret: !!facebookAppSecret,
-        username: !!instagramUsername,
-      });
-      // Return empty array instead of trying fallback to prevent undefined errors
+      // Only log once to reduce console spam
+      if (!fetchInstagramPosts._loggedMissingCredentials) {
+        console.log("Instagram integration disabled: Missing credentials");
+        fetchInstagramPosts._loggedMissingCredentials = true;
+      }
       return [];
     }
 
@@ -115,12 +114,17 @@ async function fetchInstagramPosts() {
 
     if (!accountResponse.ok) {
       const errorData = await accountResponse.json().catch(() => ({}));
-      console.log(
-        "Instagram account fetch failed:",
-        accountResponse.status,
-        errorData
-      );
-      // Return empty array instead of fallback to prevent undefined errors
+
+      // Only log the first error to reduce console spam
+      if (!fetchInstagramPosts._loggedApiError) {
+        console.log(
+          "Instagram API error:",
+          accountResponse.status,
+          errorData.error?.message || "Unknown error"
+        );
+        fetchInstagramPosts._loggedApiError = true;
+      }
+
       return [];
     }
 
