@@ -2,11 +2,6 @@
 import React, { useEffect } from "react";
 
 const InstagramFeed = ({ posts }) => {
-  // Don't render anything if no posts or posts is undefined
-  if (!posts || posts.length === 0) {
-    return null;
-  }
-
   useEffect(() => {
     // Load Instagram embed script if not already loaded
     if (typeof window !== "undefined" && !window.instgrm) {
@@ -35,6 +30,11 @@ const InstagramFeed = ({ posts }) => {
       window.instgrm.Embeds.process();
     }
   }, [posts]);
+
+  // Don't render anything if no posts or posts is undefined
+  if (!posts || posts.length === 0) {
+    return null;
+  }
 
   return (
     <div className="instagram-feed">
