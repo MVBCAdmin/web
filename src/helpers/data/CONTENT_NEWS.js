@@ -16,6 +16,10 @@ export const NEWS_CONTENT = `
             width
             height
           }
+          blockTheme {
+            customClass
+            customClassExtra
+          }
         }
       }
     }

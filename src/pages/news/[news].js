@@ -24,9 +24,20 @@ const { FOOTER_CONTENT } = require("../../helpers/data/CONTENT_GLOBAL");
  * @constructor
  */
 
+function buildThemeClassName(blockTheme) {
+  if (!blockTheme) {
+    return "";
+  }
+
+  return [blockTheme.customClass, blockTheme.customClassExtra]
+    .filter(Boolean)
+    .join(" ");
+}
+
 export default function News({ news, menu, hero, footer }) {
-  const { title, copy, image } = news;
+  const { title, copy, image, blockTheme } = news;
   const bodyText = copy?.json || null;
+  const rteThemeClass = buildThemeClassName(blockTheme);
 
   // Create a modified hero object with the article title
   const heroWithArticleTitle = hero
@@ -60,7 +71,14 @@ export default function News({ news, menu, hero, footer }) {
               </div>
             )}
             <div className={`${classes.oBody} oBodyCopy col-12`}>
-              {bodyText && documentToReactComponents(bodyText)}
+              {bodyText &&
+                (rteThemeClass ? (
+                  <div className={rteThemeClass}>
+                    {documentToReactComponents(bodyText)}
+                  </div>
+                ) : (
+                  documentToReactComponents(bodyText)
+                ))}
             </div>
           </div>
         </div>
